@@ -20,23 +20,14 @@
   function initMap() {
     var infowindow = new google.maps.InfoWindow();
     var mapOptions = {
-     center:new google.maps.LatLng(-8.583333, 117.516667), 
-     zoom:8.5,
+     center: {lat: -7.69688, lng:  109.927956},
+     zoom:11,
      mapTypeId:google.maps.MapTypeId.ROADMAP
    };
 
    var map = new google.maps.Map(document.getElementById("map"),mapOptions);
 
-   map.data.loadGeoJson('../json/Kabupaten Lombok Utara.geojson');
-   map.data.loadGeoJson('../json/Kabupaten Lombok Barat.geojson');
-   map.data.loadGeoJson('../json/Kabupaten Lombok Tengah.geojson');
-   map.data.loadGeoJson('../json/Kabupaten Lombok Timur.geojson');
-   map.data.loadGeoJson('../json/Kabupaten Sumbawa.geojson');
-   map.data.loadGeoJson('../json/Kabupaten Dompu.geojson');
-   map.data.loadGeoJson('../json/Kabupaten Bima.geojson');
-   map.data.loadGeoJson('../json/Kabupaten Sumbawa Barat.geojson');
-   map.data.loadGeoJson('../json/Kota Mataram.geojson');
-   map.data.loadGeoJson('../json/Kota Bima.geojson');
+   map.data.loadGeoJson('../_file/1.geojson');
 
    map.data.setStyle(function(feature) {
     return {
@@ -58,7 +49,7 @@
 
    map.data.addListener('click', function(event) {
     var feature = event.feature
-    var html = '<span><b>' + event.feature.getProperty('KABKOT') + '</b></span>'
+    var html = '<span>Kecamatan : <b>' + event.feature.getProperty('Kecamatan') + '</b></span>'
 
     infowindow.setContent(html)
     infowindow.setPosition(event.latLng)
@@ -67,5 +58,5 @@
 
  }
 </script>
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDWfzKm2hI-mFjdQdHqRzMDFc5svKXBwUg&callback=initMap">
-</script> 
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyDDK8zBMsEKwbX1n795e-MsGKqqrfnWU70&libraries=drawing&geometry&callback=initMap"></script>

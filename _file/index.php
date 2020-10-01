@@ -5,7 +5,7 @@ require_once '../setting/koneksi.php';
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Persebaran Fasilitas</title>
+  	<title>Persebaran Fasilitas</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <style>
@@ -35,49 +35,60 @@ require_once '../setting/koneksi.php';
     </style>
 
     <?php
-    	$data[]="'--'";
-		$data[]="'blue'";
-		$data[]="'red'";
-		$data[]="'green'";
-		$data[]="'blue'";
-		$data[]="'red'";
-		$data[]="'green'";
-		$data[]="'blue'";
-		$data[]="'red'";
-		$data[]="'green'";
-		$data[]="'blue'";
-		$data[]="'red'";
-		$data[]="'green'";
-		$data[]="'blue'";
-		$data[]="'red'";
-		$data[]="'green'";
-		$data[]="'blue'";
+    $result=$mysqli->query("select * from tb_kecamatan");
+    $num_result=$result->num_rows;
+    if ($num_result > 0 ) { 
+    	$no=0;
+    	$data[0]='';
+       while ($dataz=mysqli_fetch_assoc($result)) {
+       		extract($dataz);
+       		switch ($kelompok) {
+       			case 1:
+       				$data[$no+=1]="'red'";
+       				break;
+       			case 2:
+       				$data[$no+=1]="'green'";
+       				break;
+       			case 3:
+       				$data[$no+=1]="'blue'";
+       				break;
+       			default:
+       				break;
+       		}	
+	  }
+	}
     ?>
+    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyDDK8zBMsEKwbX1n795e-MsGKqqrfnWU70&libraries=drawing&geometry"></script>
     
 	<script>
-	   var lokasi = [
+	var lokasi = [
     <?php
-    $sql = "SELECT * from tb_fasilitas";
-    $a = mysqli_query($con,$sql);
-    while ($dataz = mysql_fetch_object($a)) {
-      echo "['$dataz->idgempa',";
-      echo "'$dataz->tanggal',";
-      echo "$dataz->lat,"; 
-      echo "$dataz->longi,"; 
-      echo "'$dataz->detail',"; 
-      echo "$dataz->kedalaman,"; 
-      echo "'$dataz->kekuatan'],"; 
-    }
-    ?>
-    ];
+    $result=$mysqli->query("select * from tb_fasilitas");
+    $num_result=$result->num_rows;
+    if ($num_result > 0 ) { 
+    	$no=0;
+       while ($dataz=mysqli_fetch_assoc($result)) {
+       		extract($dataz);
+       		if($no==0){
+       			echo "['$namaunit',";
+       		}else{
+       			echo ",['$namaunit',";
+       		}
+	      echo "$latitude,"; 
+	      echo "$longitude,";
+	      echo "$idjenis,";
+	      echo "'$nohp']"; 
+	      $no+=1;	
+    	}}?>];
+
+    	console.log(lokasi);
 		var map,
 			cachedGeoJson,
 			legend=['blue','green','red'],
 			legendket=['Fasilitas Baik','Fasilitas Cukup','Fasilitas Kurang'],
 			colorValues = [<?=join($data,',')?>],
-			invertedColorValues = [<?=join($data,',')?>],
 
 			infoWindow = new google.maps.InfoWindow({
 		      content: ""
@@ -95,10 +106,10 @@ require_once '../setting/koneksi.php';
 			});
 
 
-		for (i = 0; i<lokasi.length; i++) {
-			if (lokasi[i][6] < 3) 
+		for (i = 0;i<lokasi.length; i++) {
+			if (lokasi[i][3]=="1") 
 			url = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/library_maps.png';
-			 else if (lokasi[i][6] < 6) 
+			 else if (lokasi[i][3]=="2") 
 			url = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/parking_lot_maps.png';
 			else 
 			url = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/info-i_maps.png';
@@ -108,13 +119,14 @@ require_once '../setting/koneksi.php';
 		icon: {
 			url: url,
 		},
-		position: new google.maps.LatLng(lokasi[i][2],lokasi[i][3]),
+		position: new google.maps.LatLng(lokasi[i][1],lokasi[i][2]),
 		map:map
 		});
     
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 		return function() {
-			infodata.setContent('<a <b>'+lokasi[i][1]+'</b></a><br><div class="panel"> Kedalaman: '+lokasi[i][5]+' KM<br> Kekuatan: '+lokasi[i][6]+' SR <br>Keterangan: '+lokasi[i][4]+'<br><a href="https://www.gojek.com/" target="_blank"> Lokasi </a> </div>');
+			let link='https://maps.google.com/maps?z=7&q='+ lokasi[i][1] +','+ lokasi[i][1];
+			infodata.setContent('<div class="panel"> Fasilitas: <b>'+lokasi[i][0]+'</b><br>No Telepon: <b>'+lokasi[i][4]+'</b></br><a href="'+ link+'" target="_blank"> Lokasi </a> </div>');
 			infodata.open(map, marker);
 		}
 		})(marker, i));
