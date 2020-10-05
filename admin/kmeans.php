@@ -100,7 +100,9 @@ while ($status=='false'){
 	}
 }
 
-echo "Proses berhasil dilakukan sebanyak $loop kali";
+
+echo "<script>alert('Proses Perhitungan berhasil dilakukan sebanyak $loop kali')</script>";
+echo "<script>window.location='index.php?hal=beranda';</script>";	
 
 function update_kecamatan($mysqli,$idkecamatan,$nilai){
 

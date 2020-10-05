@@ -50,7 +50,14 @@
 </li>
 
 <li class="nav-item">
-	<a href="?hal=persebaran_fasilitas" class="nav-link">
+	<a href="kmeans.php" class="nav-link">
+		<i class="nav-icon fas fa-plus"></i>
+		<p> Proses Hitung K-Means </p>
+	</a>
+</li>
+
+<li class="nav-item">
+	<a href="persebaran_fasilitas.php" target="_blank" class="nav-link">
 		<i class="nav-icon fas fa-map"></i>
 		<p> Data Persebaran Fasilitas </p>
 	</a>

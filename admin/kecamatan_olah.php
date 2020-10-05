@@ -25,7 +25,7 @@ if (isset($_GET['id'])){
               <input type="hidden" name="kode" value="<?=$idkecamatan;?>">
 
               <div class="form-group">
-                <label for="nama">Username</label>
+                <label for="nama">Nama Kecamatan</label>
                 <input type="text" name="namakecamatan" class="form-control" value="<?=@$namakecamatan?>" placeholder="Inputkan Nama Kecamatan" required="">
               </div>
 

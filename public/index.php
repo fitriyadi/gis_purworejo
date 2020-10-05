@@ -65,7 +65,7 @@ Header
         <li class="<?php if ($hal == 'beranda') { echo 'menu-active'; } ?>"><a href="?hal=beranda">Home</a></li>
         <li class="<?php if ($hal == 'maps') { echo 'menu-active'; } ?>"><a href="?hal=persebaran">Persebaran Fasilitas</a></li>
         <li class="<?php if ($hal == 'maps') { echo 'menu-active'; } ?>"><a href="?hal=grafik">Grafik</a></li>
-        <li class="<?php if ($hal == 'kontak') { echo 'menu-active'; } ?>"><a href="?hal=kontak">Kontak Kami</a></li>
+        <li class="<?php if ($hal == 'kontak') { echo 'menu-active'; } ?>"><a href="?hal=kontak">Tentang Kami</a></li>
         <li><a href="../login.php">Login</a></li>
       </ul>
     </nav><!-- #nav-menu-container -->

@@ -30,6 +30,9 @@
               <tr>
                 <th>No</th>
                 <th>Kecamatan</th>
+                <th>Puskesmas</th>
+                <th>Rumah Sakit</th>
+                <th>Apotek</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -47,6 +50,9 @@
                   <tr>
                     <td width="5%"><?=$no+=1; ?></td>
                     <td><?=$namakecamatan; ?></td>
+                    <td><?=$_puskesmas; ?></td>
+                    <td><?=$_rumahsakit; ?></td>
+                    <td><?=$_apotek; ?></td>
                     <td width="10%">
                       <a href="?hal=kecamatan_olah&id=<?=$idkecamatan; ?>" 
                         class="btn btn-icon btn-primary" title="Edit Data"><i class="fa fa-edit"></i> </a>
