@@ -1,7 +1,7 @@
     <section id="contact" class="wow fadeInUp">
       <div class="container">
         <div class="section-header">
-          <h2>Contact Us</h2>
+          <h2>Tentang Kami</h2>
           <p>Sed tamen tempor magna labore dolore dolor sint tempor duis magna elit veniam aliqua esse amet veniam enim export quid quid veniam aliqua eram noster malis nulla duis fugiat culpa esse aute nulla ipsum velit export irure minim illum fore</p>
         </div>
 
@@ -34,31 +34,4 @@
         </div>
       </div>
 
-      <div class="container">
-        <div class="form">
-          <form action="kontak_proses.php" method="post" role="form">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-
-                <input type="text" name="nama" class="form-control" id="name" placeholder="Nama"  required="" />
-                <div class="validation"></div>
-
-              </div>
-              <div class="form-group col-md-6">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="" />
-                <div class="validation"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <textarea class="form-control" name="pesan" rows="3" placeholder="Pesan"></textarea>
-              <div class="validation"></div>
-            </div>
-             <div class="text-center">
-            <input type="submit" name="tambah" value="Kirim" class="btn btn-primary">
-          </div>
-          </form>
-        </div>
-
-      </div>
     </section><!-- #contact -->
