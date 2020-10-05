@@ -5,15 +5,47 @@ require_once '../setting/tanggal.php';
 require_once '../setting/fungsi.php';
 
 //Populate Data  -> Hitung Jumlah Data Perkecamatan
+$query="select idkecamatan as kode,
+(select count(*) from tb_fasilitas where idkecamatan=kode and idjenis='1') as rs,
+(select count(*) from tb_fasilitas where idkecamatan=kode and idjenis='2') as puskes,
+(select count(*) from tb_fasilitas where idkecamatan=kode and idjenis='3') as apot
+from tb_kecamatan";
+$result=$mysqli->query($query);
+while ($data=mysqli_fetch_assoc($result)) {
+	extract($data);
+	//update_jumlah($mysqli,$kode,$puskes,$rs,$apot);
+}
 
-
-//
 
 //Inisialisasi Cluster Awal
 $jumlahkecamatan=caridata($mysqli,"select count(*) from tb_kecamatan");
 for ($i=0;$i<$jumlahkecamatan; $i++) { 
 	$clusterawal[$i]="1";
 }
+
+//Mengambil Nilai Terbesar Puskesmas, Rumah Sakit dan Apotek
+$puskemas_max=caridata($mysqli,"select max(_puskesmas) from tb_kecamatan");
+$puskemas_min=caridata($mysqli,"select min(_puskesmas) from tb_kecamatan");
+
+$rs_max=caridata($mysqli,"select max(_rumahsakit) from tb_kecamatan");
+$rs_min=caridata($mysqli,"select min(_rumahsakit) from tb_kecamatan");
+
+$apotek_max=caridata($mysqli,"select max(_apotek) from tb_kecamatan");
+$apotek_min=caridata($mysqli,"select min(_apotek) from tb_kecamatan");
+
+
+//Nilai Centro 1 [Puskesmas, Rumah Sakit, Apotek]
+$centro1[0][0]=$puskemas_min+(((1-1)*($puskemas_max-$puskemas_min))/2)+(($puskemas_max-$puskemas_min)/(2*3));
+$centro1[0][1]=$rs_min+(((1-1)*($rs_max-$rs_min))/2)+(($rs_max-$rs_min)/(2*3));
+$centro1[0][2]=$apotek_min+(((1-1)*($apotek_max-$apotek_min))/2)+(($apotek_max-$apotek_min)/(2*3));
+
+$centro2[0][0]=$puskemas_min+(((2-1)*($puskemas_max-$puskemas_min))/2)+(($puskemas_max-$puskemas_min)/(2*3));
+$centro2[0][1]=$rs_min+(((2-1)*($rs_max-$rs_min))/2)+(($rs_max-$rs_min)/(2*3));
+$centro2[0][2]=$apotek_min+(((2-1)*($apotek_max-$apotek_min))/2)+(($apotek_max-$apotek_min)/(2*3));
+
+$centro3[0][0]=$puskemas_min+(((3-1)*($puskemas_max-$puskemas_min))/2)+(($puskemas_max-$puskemas_min)/(2*3));
+$centro3[0][1]=$rs_min+(((3-1)*($rs_max-$rs_min))/2)+(($rs_max-$rs_min)/(2*3));
+$centro3[0][2]=$apotek_min+(((3-1)*($apotek_max-$apotek_min))/2)+(($apotek_max-$apotek_min)/(2*3));
 
 //Set Default Nilai Centroid 1,2,3
 $centro1[0] = array('1.33','2','2.67');
@@ -111,6 +143,21 @@ function update_kecamatan($mysqli,$idkecamatan,$nilai){
 		where idkecamatan=?");
 	$stmt->bind_param("ss",
 		$nilai,
+		$idkecamatan);
+	$stmt->execute();
+}
+
+function update_jumlah($mysqli,$idkecamatan,$puskesmas,$rumahsakit,$apotek){
+
+	$stmt=$mysqli->prepare("update tb_kecamatan set 
+		_puskesmas=?,
+		_rumahsakit=?,
+		_apotek=?
+		where idkecamatan=?");
+	$stmt->bind_param("ssss",
+		$puskesmas,
+		$rumahsakit,
+		$apotek,
 		$idkecamatan);
 	$stmt->execute();
 }

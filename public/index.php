@@ -62,10 +62,11 @@ Header
 
     <nav id="nav-menu-container">
       <ul class="nav-menu">
-        <li class="<?php if ($hal == 'beranda') { echo 'menu-active'; } ?>"><a href="?hal=beranda">Home</a></li>
-        <li class="<?php if ($hal == 'maps') { echo 'menu-active'; } ?>"><a href="?hal=persebaran">Persebaran Fasilitas</a></li>
-        <li class="<?php if ($hal == 'maps') { echo 'menu-active'; } ?>"><a href="?hal=grafik">Grafik</a></li>
-        <li class="<?php if ($hal == 'kontak') { echo 'menu-active'; } ?>"><a href="?hal=kontak">Tentang Kami</a></li>
+
+        <li class="<?=@$_GET['hal']=='beranda' || !isset($_GET['hal'])? 'menu-active':'';?>"><a href="?hal=beranda">Home</a></li>
+        <li class="<?=@$_GET['hal']=='persebaran' ? 'menu-active':'';?>"><a href="?hal=persebaran">Persebaran Fasilitas</a></li>
+        <li class="<?=@$_GET['hal']=='grafik' ? 'menu-active':'';?>"><a href="?hal=grafik">Grafik</a></li>
+        <li class="<?=@$_GET['hal']=='kontak' ? 'menu-active':'';?>"><a href="?hal=kontak">Tentang Kami</a></li>
         <li><a href="../login.php">Login</a></li>
       </ul>
     </nav><!-- #nav-menu-container -->

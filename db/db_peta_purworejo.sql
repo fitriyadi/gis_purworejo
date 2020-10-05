@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 01, 2020 at 07:45 AM
+-- Generation Time: Oct 05, 2020 at 09:06 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -96,7 +96,7 @@ INSERT INTO `tb_fasilitas` (`idfasilitas`, `namaunit`, `idjenis`, `idkecamatan`,
 (32, 'Puskesmas Wirun', 2, 9, 109.915543, -7.6758334, 'Ds. Wirun ,Kec. Kutoarjo', '081909786578'),
 (33, 'Puskesmas Winong', 2, 1, 109.952002, -7.6674537, 'Ds. Winong, Kec. Kemiri ', '081909786578'),
 (34, 'Apotek As-Salam', 3, 1, 110.0143389, -7.7089398, 'Jl. Pramuka No. 40 Purworejo', '081667889211'),
-(35, 'Apotek As-Syifa', 3, 1, 110.1436466, -7.8679189, 'Jl. Purworejo – Winong Km. 7', '081667889211'),
+(35, 'Apotek As-Syifa', 1, 4, 110.0290841, -7.7770287, 'Jl. Purworejo – Winong Km. 7', '081667889211'),
 (36, 'Apotek Atha Farma', 3, 1, 109.9967723, -7.720115, 'Jl. Jend. Sudirman', '081667889211'),
 (37, 'Apotek Anugerah', 3, 1, 110.0100271, -7.709032, 'Jl. Kol. Sugiono No. 91 Purworejo', '1081667889211'),
 (38, 'Apotek Bagelan', 3, 1, 110.0148122, -7.7142635, 'Jl. Wr. Supratman No. 20 Purworejo', '081667889211'),
@@ -122,7 +122,7 @@ INSERT INTO `tb_fasilitas` (`idfasilitas`, `namaunit`, `idjenis`, `idkecamatan`,
 (59, 'Apotek Naga Mas', 3, 6, 109.99562, -7.7203508, 'Jl. Jend. Sudirman No. 22 Purworejo', '085123456778'),
 (60, 'Apotek Pelangi Farma', 3, 7, 109.9692287, -7.7549915, 'Jl. Raya Banyuurip Rt 02/Rw 01\r\nSumbersari\r\n', '081123456789'),
 (63, 'Apotek Pancur Gading', 3, 1, 110.0130051, -7.7126086, 'Jl. Kha Dahlan No. 107 Purworejo', '085334556771'),
-(64, 'Apotek Pedoman Jaya', 3, 1, 109.9032904, -7.8900593, 'Jl. Ahmad Yani No. 176 Purworejo', '087767112456'),
+(64, 'Apotek Pedoman Jaya', 1, 6, 109.9856912, -7.721543, 'Jl. Ahmad Yani No. 176 Purworejo', '087767112456'),
 (65, 'Apotek Purwodadi', 3, 3, 110.9151473, -7.0833771, 'Desa Purwodadi', '0816667775346'),
 (66, 'Apotek Pusaka', 3, 1, 110.015051, -7.7087021, 'Jl. Kh.A. Dahlan No. 85 Purworejo', '085667889123'),
 (67, 'Apotek R D E', 3, 1, 109.989605, -7.7223981, 'Jl. Tentara Pelajar No. 67A Purworejo', '081445678212'),
@@ -492,22 +492,22 @@ CREATE TABLE `tb_kecamatan` (
 --
 
 INSERT INTO `tb_kecamatan` (`idkecamatan`, `namakecamatan`, `kelompok`, `_puskesmas`, `_rumahsakit`, `_apotek`) VALUES
-(1, 'Grabag', '0', 0, 0, 0),
-(2, 'Ngombol', '0', 0, 0, 0),
-(3, 'Purwodadi', '0', 0, 0, 0),
-(4, 'Bagelan', '0', 0, 0, 0),
-(5, 'Kaligesing', '0', 0, 0, 0),
-(6, 'Purworejo', '0', 0, 0, 0),
-(7, 'Banyuurip', '0', 0, 0, 0),
-(8, 'Bayan', '0', 0, 0, 0),
-(9, 'Kutoarjo', '0', 0, 0, 0),
-(10, 'Butuh', '0', 0, 0, 0),
-(11, 'Pituruh', '0', 0, 0, 0),
-(12, 'Kemiri', '0', 0, 0, 0),
-(13, 'Bruno', '0', 0, 0, 0),
-(14, 'Gebang', '0', 0, 0, 0),
-(15, 'Loano', '0', 0, 0, 0),
-(16, 'Bener', '0', 0, 0, 0);
+(1, 'Grabag', 'C2', 1, 0, 1),
+(2, 'Ngombol', 'C2', 1, 0, 1),
+(3, 'Purwodadi', 'C2', 2, 0, 2),
+(4, 'Bagelan', 'C2', 2, 0, 2),
+(5, 'Kaligesing', 'C2', 1, 0, 1),
+(6, 'Purworejo', 'C3', 3, 2, 12),
+(7, 'Banyuurip', 'C2', 2, 1, 2),
+(8, 'Bayan', 'C1', 1, 1, 4),
+(9, 'Kutoarjo', 'C2', 3, 1, 1),
+(10, 'Butuh', 'C2', 2, 0, 1),
+(11, 'Pituruh', 'C2', 2, 0, 1),
+(12, 'Kemiri', 'C1', 2, 0, 6),
+(13, 'Bruno', 'C1', 1, 0, 3),
+(14, 'Gebang', 'C2', 1, 0, 2),
+(15, 'Loano', 'C2', 2, 0, 1),
+(16, 'Bener', 'C2', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -526,9 +526,9 @@ CREATE TABLE `tb_sdm` (
 
 INSERT INTO `tb_sdm` (`idsdm`, `nama`) VALUES
 (1, 'Medis'),
-(2, 'Kefarmasian'),
+(2, 'Kebidanan'),
 (3, 'Keperawatan'),
-(4, 'Kebidanan');
+(4, 'Kefarmasian');
 
 --
 -- Indexes for dumped tables
